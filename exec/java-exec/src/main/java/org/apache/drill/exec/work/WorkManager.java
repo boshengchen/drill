@@ -51,6 +51,7 @@ import org.apache.drill.exec.work.fragment.FragmentExecutor;
 import org.apache.drill.exec.work.fragment.FragmentManager;
 import org.apache.drill.exec.work.user.UserWorker;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +91,8 @@ public class WorkManager implements AutoCloseable {
   private final StatusThread statusThread;
   private final Lock isEmptyLock = new ReentrantLock();
   private Condition isEmptyCondition;
+
+
 
   /**
    * How often the StatusThread collects statistics about running fragments.

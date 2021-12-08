@@ -37,6 +37,11 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.drill</groupId>
+      <artifactId>drill-ranger</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.drill</groupId>
       <artifactId>drill-protocol</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -444,6 +449,39 @@
                   <resources>
                     <resource>
                       <directory>src/main/resources/winutils</directory>
+                      <filtering>false</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>default-ranger</id>
+      <activation>
+        <property>
+          <name>!alt-ranger</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-ranger</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/ranger</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>src/main/resources/ranger</directory>
                       <filtering>false</filtering>
                     </resource>
                   </resources>

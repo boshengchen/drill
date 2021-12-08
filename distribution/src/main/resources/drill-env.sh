@@ -175,3 +175,6 @@
 #   Set environment variable value to be consumed by Sqlline
 # fi
 #
+
+export DRILL_ACL_TYPE="ranger"
+

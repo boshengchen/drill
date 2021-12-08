@@ -62,6 +62,7 @@
         <include>org.apache.drill.contrib:drill-opentsdb-storage:jar</include>
         <include>org.apache.drill.contrib:drill-udfs:jar</include>
         <include>org.apache.drill.contrib:drill-druid-storage:jar</include>
+        <include>org.apache.drill:drill-ranger:jar</include>
       </includes>
       <outputDirectory>jars</outputDirectory>
       <useProjectArtifact>false</useProjectArtifact>
@@ -219,6 +220,10 @@
     <fileSet>
       <directory>${project.build.directory}/winutils</directory>
       <outputDirectory>winutils/bin</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../ranger</directory>
+      <outputDirectory>ranger</outputDirectory>
     </fileSet>
   </fileSets>
 
@@ -390,6 +395,21 @@
     <file>
       <source>src/main/resources/drill-metastore-override-example.conf</source>
       <outputDirectory>conf</outputDirectory>
+      <fileMode>0640</fileMode>
+    </file>
+    <file>
+      <source>src/main/resources/ranger/ranger-drill-security.xml</source>
+      <outputDirectory>ranger</outputDirectory>
+      <fileMode>0640</fileMode>
+    </file>
+    <file>
+      <source>src/main/resources/ranger/ranger-drill-audit.xml</source>
+      <outputDirectory>ranger</outputDirectory>
+      <fileMode>0640</fileMode>
+    </file>
+    <file>
+      <source>src/main/resources/ranger/ranger-servicedef-drill.json</source>
+      <outputDirectory>ranger</outputDirectory>
       <fileMode>0640</fileMode>
     </file>
   </files>

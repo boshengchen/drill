@@ -47,6 +47,7 @@ import org.apache.drill.exec.store.sys.PersistentStoreProvider;
 import org.apache.drill.exec.work.foreman.rm.ResourceManager;
 import org.apache.drill.exec.work.foreman.rm.ResourceManagerBuilder;
 import org.apache.drill.metastore.MetastoreRegistry;
+import org.apache.drill.permission.ranger.RangerDrillAuthorizer;
 
 import java.util.Collection;
 import java.util.Map.Entry;
@@ -78,6 +79,8 @@ public class DrillbitContext implements AutoCloseable {
   private ResourceManager resourceManager;
   private final MetastoreRegistry metastoreRegistry;
   private final DrillCounters counters;
+  private RangerDrillAuthorizer rangerDrillAuthorizer;
+  private boolean isRanger = false;
 
   public DrillbitContext(
       DrillbitEndpoint endpoint,
@@ -127,7 +130,21 @@ public class DrillbitContext implements AutoCloseable {
     profileStoreContext = new QueryProfileStoreContext(config, profileStoreProvider, coord);
     this.metastoreRegistry = new MetastoreRegistry(config);
 
+    // ranger init
+    if (System.getenv("DRILL_ACL_TYPE").equals("ranger")) {
+      this.isRanger = true;
+      this.rangerDrillAuthorizer = new RangerDrillAuthorizer();
+      this.rangerDrillAuthorizer.init();
+    }
+
     this.counters = DrillCounters.getInstance();
+  }
+
+  public boolean aclCheck(String userName, String clientIp, String accessType, String resourceType, String resourceName) {
+    if (!isRanger) {
+      return true;
+    }
+    return this.rangerDrillAuthorizer.isAccessAllowed(null);
   }
 
   public QueryProfileStoreContext getProfileStoreContext() {

@@ -393,6 +393,11 @@ if [[ ! "$DRILL_CONF_DIR" -ef "$DRILL_HOME/conf" ]]; then
   CP="$CP:$DRILL_HOME/conf"
 fi
 
+if [[ ! "$DRILL_CONF_DIR" -ef "$DRILL_HOME/ranger" ]]; then
+  export DRILL_SITE_DIR="$DRILL_CONF_DIR"
+  CP="$CP:$DRILL_HOME/ranger"
+fi
+
 # Followed by any user specified override jars
 if [ -n "$DRILL_CLASSPATH_PREFIX" ]; then
   CP="$CP:$DRILL_CLASSPATH_PREFIX"

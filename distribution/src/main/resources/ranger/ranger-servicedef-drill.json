@@ -1,0 +1,212 @@
+{
+  "name": "drill",
+  "implClass": "org.apache.drill.ranger.service.RangerServiceDrill",
+  "label": "DRILL",
+  "description": "DRILL",
+  "guid": "8f43580f-3082-a834-97fc-f87d410d5034",
+  "options": {"enableDenyAndExceptionsInPolicies": "true"},
+  "resources":
+  [
+    {
+      "itemId": 1,
+      "name": "system",
+      "type": "string",
+      "level": 10,
+      "parent": "",
+      "mandatory": true,
+      "lookupSupported": false,
+      "recursiveSupported": false,
+      "excludesSupported": true,
+      "Matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+      "matcherOptions": {"wildCard":true, "ignoreCase":true},
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "System",
+      "description": "Drill System"
+    },
+    {
+      "itemId": 2,
+      "name": "schema",
+      "type": "string",
+      "level": 10,
+      "parent": "",
+      "mandatory": true,
+      "lookupSupported": false,
+      "recursiveSupported": false,
+      "excludesSupported": true,
+      "Matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+      "matcherOptions": {"wildCard":true, "ignoreCase":true},
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Schema",
+      "description": "Drill Schema"
+    },
+    {
+      "itemId": 3,
+      "name": "table",
+      "type": "string",
+      "level": 20,
+      "parent": "schema",
+      "mandatory": true,
+      "lookupSupported": false,
+      "recursiveSupported": false,
+      "excludesSupported": true,
+      "Matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+      "matcherOptions": {"wildCard":true, "ignoreCase":true},
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Table",
+      "description": "DRILL Table"
+    },
+    {
+      "itemId": 4,
+      "name": "view",
+      "type": "string",
+      "level": 20,
+      "parent": "schema",
+      "mandatory": true,
+      "lookupSupported": false,
+      "recursiveSupported": false,
+      "excludesSupported": true,
+      "Matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+      "matcherOptions": {"wildCard":true, "ignoreCase":true},
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Sequence",
+      "description": "Drill View"
+    },
+    {
+      "itemId": 5,
+      "name": "function",
+      "type": "string",
+      "level": 10,
+      "parent": "",
+      "mandatory": true,
+      "lookupSupported": false,
+      "recursiveSupported": false,
+      "excludesSupported": true,
+      "Matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+      "matcherOptions": {"wildCard":true, "ignoreCase":true},
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Function",
+      "description": "Drill Function"
+    }
+  ],
+  "accessTypes":
+  [
+    {
+      "itemId": 1,
+      "name": "select",
+      "label": "select"
+    },
+    {
+      "itemId": 2,
+      "name": "create",
+      "label": "create"
+    },
+    {
+      "itemId": 3,
+      "name": "drop",
+      "label": "drop"
+    },
+    {
+      "itemId": 4,
+      "name": "show",
+      "label": "show"
+    },
+    {
+      "itemId": 5,
+      "name": "use",
+      "label": "use"
+    },
+    {
+      "itemId": 6,
+      "name": "describe",
+      "label": "describe"
+    }
+  ],
+
+  "configs":
+  [
+    {
+      "itemId": 1,
+      "name": "username",
+      "type": "string",
+      "mandatory": true,
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Drill User Name",
+      "defaultValue": "admin"
+    },
+    {
+      "itemId": 2,
+      "name": "password",
+      "type": "password",
+      "mandatory": true,
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Drill User Password"
+    },
+    {
+      "itemId": 3,
+      "name": "authentication",
+      "type": "enum",
+      "subType": "authType",
+      "mandatory": true,
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "Drill Authentication Type",
+      "defaultValue": "simple"
+    },
+    {
+      "itemId": 4,
+      "name": "hostname",
+      "type": "string",
+      "mandatory": true,
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "DRILL Master Hostname"
+    },
+    {
+      "itemId": 5,
+      "name": "port",
+      "type": "int",
+      "mandatory": true,
+      "validationRegEx": "",
+      "validationMessage": "",
+      "uiHint": "",
+      "label": "DRILL Master Port",
+      "defaultValue": 2181
+    }
+  ],
+  "enums": 
+  [
+    {
+      "itemId": 1,
+      "name": "authType",
+      "elements": 
+      [
+        {
+          "itemId": 1,
+          "name": "simple",
+          "label": "Simple"
+        }
+      ],
+      "defaultIndex": 0
+    }
+  ],
+  "contextEnrichers": [],
+  "policyConditions": [],
+  "dataMaskDef": {},
+  "rowFilterDef": {}
+}
